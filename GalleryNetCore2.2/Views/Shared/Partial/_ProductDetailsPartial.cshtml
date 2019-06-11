@@ -1,0 +1,41 @@
+﻿@using DAL.Entities
+@using DAL.Entities.Products
+@using Microsoft.AspNetCore.Identity
+@model DAL.Entities.Products.Product
+
+@{
+    bool isAdmin = User.IsInRole("Admin");
+
+    bool isPainting = Model is Painting;
+    bool isSculpture = Model is Sculpture;
+}
+
+<div class="product">
+    <div class="product-top">
+        <h4 class="product-name">@Model.Name</h4>
+    </div>
+
+    <div class="product-bottom">
+        <img src="@Model.Image?.Url" />
+
+        <div class="product-info">
+            <div class="product-dimensions">
+                <p>Dimenzije</p>
+            </div>
+
+            <div class="product-tags">
+
+            </div>
+
+            <div class="product-tags">
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    @if (isAdmin)
+    {
+        <a asp-controller="Management" asp-action=edit_painting_view asp-route-id="@Model.Id">Edit</a>
+    }
+    <a asp-action="Index">Back to List</a>
+</div>

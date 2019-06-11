@@ -3,11 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29001.49
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GalleryNetCore2.2", "GalleryNetCore2.2\GalleryNetCore2.2.csproj", "{54401F10-51F2-49DF-A8E1-70AF42C879BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GalleryNetCore2.2", "GalleryNetCore2.2\GalleryNetCore2.2.csproj", "{54401F10-51F2-49DF-A8E1-70AF42C879BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{69854BA9-A52B-47D0-96FC-5BD7375B3248}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{399C52DB-417B-4A64-BBA6-0B5209431835}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{69854BA9-A52B-47D0-96FC-5BD7375B3248}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{EB9952F0-CEB1-406F-ABC4-4C6FB63101DA}"
 	ProjectSection(SolutionItems) = preProject
@@ -28,10 +26,6 @@ Global
 		{69854BA9-A52B-47D0-96FC-5BD7375B3248}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{69854BA9-A52B-47D0-96FC-5BD7375B3248}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{69854BA9-A52B-47D0-96FC-5BD7375B3248}.Release|Any CPU.Build.0 = Release|Any CPU
-		{399C52DB-417B-4A64-BBA6-0B5209431835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{399C52DB-417B-4A64-BBA6-0B5209431835}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{399C52DB-417B-4A64-BBA6-0B5209431835}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{399C52DB-417B-4A64-BBA6-0B5209431835}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

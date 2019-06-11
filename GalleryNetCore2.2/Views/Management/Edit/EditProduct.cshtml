@@ -1,0 +1,29 @@
+﻿@model DAL.Entities.Products.Product
+
+<h4>Proizvod: @Model.Name</h4>
+<hr />
+<div class="col-10">
+    <partial name="Partial/_CreateEditProduct" />
+
+    <form asp-action="set_image" enctype="multipart/form-data" class="dropzone" id="imageDropzone">
+        <img class="product-image-edit" src=@Model.Image />
+        <div class="dz-drop dz-message needsclick">
+            Postavite sliku<br>
+        </div>
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Styles
+{
+<link rel="stylesheet" href="~/dropzone/min/dropzone.min.css" />
+<link rel="stylesheet" href="~/css/management.min.css" />
+}
+
+@section Scripts
+{
+<script src="~/dropzone/min/dropzone.min.js"></script>
+}

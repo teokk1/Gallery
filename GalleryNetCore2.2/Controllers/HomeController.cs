@@ -1,18 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using DAL;
+using GalleryNetCore2._2.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using GalleryNetCore2._2.Models;
 
 namespace GalleryNetCore2._2.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : BaseController
 	{
+		public HomeController(AppDbContext dbContext) : base(dbContext)
+		{
+		}
+
 		public IActionResult Index()
 		{
 			return View();
+		}
+
+		public IActionResult Gallery()
+		{
+			return View(dbContext.Products.ToList());
 		}
 
 		public IActionResult Privacy()

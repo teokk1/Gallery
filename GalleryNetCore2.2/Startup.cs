@@ -1,17 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Threading.Tasks;
-using DAL;
+﻿using DAL;
+using DAL.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using System.Data.SqlClient;
 
 namespace GalleryNetCore2._2
 {
@@ -33,8 +30,32 @@ namespace GalleryNetCore2._2
 				options.CheckConsentNeeded = context => true;
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
-			
+
 			services.AddDbContext<AppDbContext>(options => options.UseSqlServer(build_connection_string()));
+
+			services.AddIdentity<User, IdentityRole>()
+				.AddRoleManager<RoleManager<IdentityRole>>()
+				.AddDefaultUI()
+				.AddDefaultTokenProviders()
+				.AddEntityFrameworkStores<AppDbContext>();
+
+			services.Configure<IdentityOptions>(options =>
+			{
+				options.Password.RequireDigit = false;
+				options.Password.RequiredLength = 1;
+				options.Password.RequireNonAlphanumeric = false;
+				options.Password.RequireUppercase = false;
+				options.Password.RequireLowercase = false;
+			});
+
+			services.AddAuthentication()
+				.AddGoogle(googleOptions =>
+				{
+					googleOptions.ClientId = Configuration["GoogleSignInId"];
+					googleOptions.ClientSecret = Configuration["GoogleSignInSecret"];
+				});
+
+			//services.AddDefaultIdentity<User>().AddDefaultUI(UIFramework.Bootstrap4).AddEntityFrameworkStores<AppDbContext>();
 
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 		}
@@ -43,8 +64,8 @@ namespace GalleryNetCore2._2
 		{
 			var builder = new SqlConnectionStringBuilder(Configuration.GetConnectionString("AzureDbConnection"))
 			{
-				Password = Configuration["DbPassword"],
 				UserID = Configuration["DbUsername"],
+				Password = Configuration["DbPassword"],
 			};
 
 			return builder.ConnectionString;
@@ -55,6 +76,7 @@ namespace GalleryNetCore2._2
 		{
 			if (env.IsDevelopment())
 			{
+				app.UseBrowserLink();
 				app.UseDeveloperExceptionPage();
 			}
 			else
@@ -68,9 +90,12 @@ namespace GalleryNetCore2._2
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
 
+			app.UseAuthentication();
+
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+				routes.MapRoute(name: "api/products", template: "{controller=ManagementApi}/{action=Index}");
 			});
 		}
 	}

@@ -1,0 +1,13 @@
+﻿.gallery{
+    display: grid;
+    grid-template-columns: auto auto auto;
+    grid-column-gap: 20px;
+    align-content: center;
+    justify-content: center;
+}
+
+.product{
+    background-color: #333;
+    padding: 20px;
+    box-sizing: border-box;
+}

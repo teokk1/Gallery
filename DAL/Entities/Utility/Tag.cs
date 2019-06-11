@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using DAL.Entities.Intersections;
+﻿using DAL.Entities.Intersections;
+using System.Collections.Generic;
 
 namespace DAL.Entities.Utility
 {

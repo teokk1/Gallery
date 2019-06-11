@@ -1,0 +1,15 @@
+﻿@using DAL.Entities.Products
+
+@model List<Product>
+
+@{
+
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="gallery">
+    @foreach (var product in Model)
+    {
+        <partial name="Partial/_ProductPartial" model="@product" />
+    }
+</div>

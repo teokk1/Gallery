@@ -1,2 +1,2 @@
-dotnet ef migrations add Initial --startup-project GalleryNetCore2.2 --context AppDbContext --project DAL
-dotnet ef database update Initial  --startup-project GalleryNetCore2.2 --context AppDbContext  --project DAL
+dotnet ef migrations add ArtistsImagesUpdatesConstraintsDates --startup-project GalleryNetCore2.2 --context AppDbContext --project DAL
+dotnet ef database update ArtistsImagesUpdatesConstraintsDates  --startup-project GalleryNetCore2.2 --context AppDbContext  --project DAL

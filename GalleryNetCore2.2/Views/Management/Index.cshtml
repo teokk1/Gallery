@@ -1,0 +1,23 @@
+﻿
+@{
+    @model List<DAL.Entities.Products.Product>
+}
+
+<div class="view-scaffold">
+    <h2 class="view-heading">Upravljanje</h2>
+
+    <a class="manage-link" href="#"></a>
+
+    <div>
+        <ul class="product-manage-list">
+            @foreach (var product in Model)
+            {
+                <ul class="product-manage-list-item">
+                    <a>
+                        @product.Name
+                    </a>
+                </ul>
+            }
+        </ul>
+    </div>
+</div>
