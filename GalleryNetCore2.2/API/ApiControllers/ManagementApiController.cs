@@ -52,19 +52,19 @@ namespace GalleryNetCore2._2.API.ApiControllers
 		}
 
 		[HttpPut("products/update/{id}")]
-		public async Task<ActionResult<Product>> update(int id, [FromBody] JObject productModel)
+		public async Task<ActionResult<Product>> update(int id, [FromBody] Sculpture incoming)
 		{
 			var product = dbContext.Products.Find(id);
-
+			
 			if (product != null)
 			{
 				product.LastUpdate = DateTime.Now;
+				
+				product.Width = incoming.Width;
+				product.Name = incoming.Name;
 
-				if (ModelState.IsValid && await TryUpdateModelAsync(product, "", new ObjectSourceValueProvider(productModel)))
-				{
-					dbContext.SaveChanges();
-					return get_product(id);
-				}
+				dbContext.SaveChanges();
+				return get_product(id);
 			}
 			else
 				ModelState.AddModelError("id", "Invalid client ID");
