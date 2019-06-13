@@ -39,7 +39,7 @@ namespace GalleryNetCore2._2.API.ApiControllers
 		public Product get_product(int id) => full_products().FirstOrDefault(p => p.Id == id);
 
 		[HttpPost("create-product")]
-		public ActionResult<Product> create([FromBody] Product product)
+		public ActionResult<Product> create([FromBody] Painting product)
 		{
 			if (ModelState.IsValid == false)
 				return BadRequest(ModelState);
