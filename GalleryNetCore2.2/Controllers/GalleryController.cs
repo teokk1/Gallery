@@ -2,6 +2,8 @@
 using GalleryNetCore2._2.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using Model.Entities;
 using Model.Entities.Products;
 using System;
 using System.Collections.Generic;
@@ -15,16 +17,21 @@ namespace GalleryNetCore2._2.Controllers
 		{
 		}
 
+		IIncludableQueryable<Product, Artist> db_set()
+		{
+			return dbContext.Products.Include(p => p.Image).Include(p => p.Artist);
+		}
+
 		public IActionResult Index()
 		{
-			return View(dbContext.Products.Include(p => p.Image).Include(p => p.Artist).ToList());
+			return View(db_set().ToList());
 		}
 
 		[HttpPost]
 		//[AllowAnonymous]
 		public ActionResult Search(ProductFilterModel filter)
 		{
-			var query = dbContext.Products.AsQueryable();
+			var query = db_set().AsQueryable();
 
 			query = filter_name(query, filter.Name);
 			query = filter_artist(query, filter.Name);
