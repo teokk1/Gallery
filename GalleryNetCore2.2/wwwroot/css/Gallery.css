@@ -1,7 +1,7 @@
 ﻿.gallery {
   display: grid;
   grid-template-columns: auto auto auto;
-  grid-column-gap: 20px;
+  /*grid-column-gap: 20px;*/
   align-content: center;
   justify-content: center;
   background: url("https://images.unsplash.com/photo-1560301115-0cebd495255c");

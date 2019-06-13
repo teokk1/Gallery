@@ -46,6 +46,9 @@ footer {
   align-content: center;
   color: #FFF; }
 
+.product-image {
+  width: 400px; }
+
 ul {
   list-style: none;
   padding: 0;
