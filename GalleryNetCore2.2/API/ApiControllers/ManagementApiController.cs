@@ -39,7 +39,6 @@ namespace GalleryNetCore2._2.API.ApiControllers
 		public Product get_product(int id) => full_products().FirstOrDefault(p => p.Id == id);
 
 		[HttpPost("create-product")]
-		[Authorize(Roles = "Admin,Manager")]
 		public ActionResult<Product> create([FromBody] Product product)
 		{
 			if (ModelState.IsValid == false)
@@ -53,7 +52,6 @@ namespace GalleryNetCore2._2.API.ApiControllers
 		}
 
 		[HttpPut("products/update/{id}")]
-		[Authorize(Roles = "Admin,Manager")]
 		public async Task<ActionResult<Product>> update(int id, [FromBody] JObject productModel)
 		{
 			var product = dbContext.Products.Find(id);
@@ -74,7 +72,6 @@ namespace GalleryNetCore2._2.API.ApiControllers
 			return BadRequest(ModelState);
 		}
 
-		[Authorize(Roles = "Admin")]
 		[HttpDelete("delete/{id}")]
 		public IActionResult delete(int id)
 		{
