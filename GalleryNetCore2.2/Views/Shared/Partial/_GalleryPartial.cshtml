@@ -1,0 +1,12 @@
+﻿@model List<Model.Entities.Products.Product>
+
+@{
+    bool isAdmin = User.IsInRole("Admin");
+}
+
+<div class="gallery" id="gallery">
+    @foreach (var product in Model)
+    {
+        <partial name="Partial/_ProductPartial" model="@product" />
+    }
+</div>

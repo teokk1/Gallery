@@ -17,10 +17,39 @@
   text-align: center;
   color: #333; }
 
+.welcome-heading {
+  text-align: center; }
+
+.home-preview {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-column-gap: 20px;
+  align-content: center;
+  justify-content: center;
+  background: url("https://images.unsplash.com/photo-1560301115-0cebd495255c");
+  background-size: cover;
+  background-position: center;
+  filter: blur(40%);
+  text-align: center; }
+
+.nav-link-admin {
+  color: indianred; }
+
+pb {
+  display: block; }
+
 footer {
   padding: 100px;
-  background-color: #333;
   display: flex;
+  background-color: #333;
   justify-content: center;
   align-content: center;
   color: #FFF; }
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+
+li {
+  padding: 0; }

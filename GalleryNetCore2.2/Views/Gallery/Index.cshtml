@@ -1,0 +1,35 @@
+﻿@model List<Model.Entities.Products.Product>
+
+<partial name="Partial/_ProductFilterPartial" model="new ProductFilterModel()" />
+
+<partial name="Partial/_GalleryPartial" />
+
+@section Scripts
+{
+    <script type="text/javascript">
+
+    function performSearch()
+    {
+        console.log("Performing search.");
+        var values = $("#search-form").serialize();
+
+        $.ajax
+        ({
+            url: '@Url.Action("Search", "Gallery")',
+            data: values,
+            method: "POST",
+            success: function (html)
+            {
+                $("#gallery").replaceWith(html);
+            }
+        });
+        return true;
+    }
+
+    $(".filter-field").keyup(function ()
+    {
+        console.log("Trigger");
+        performSearch();
+    });
+    </script>
+}

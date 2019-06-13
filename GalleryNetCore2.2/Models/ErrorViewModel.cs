@@ -1,5 +1,3 @@
-using System;
-
 namespace GalleryNetCore2._2.Models
 {
 	public class ErrorViewModel

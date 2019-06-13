@@ -1,14 +1,16 @@
 ﻿using DAL;
-using DAL.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Model.Entities;
 using System.Data.SqlClient;
+using System.Globalization;
 
 namespace GalleryNetCore2._2
 {
@@ -92,9 +94,23 @@ namespace GalleryNetCore2._2
 
 			app.UseAuthentication();
 
+			var supportedCultures = new[]
+			{
+				new CultureInfo("hr"),
+				new CultureInfo("en-US")
+			};
+
+			app.UseRequestLocalization(new RequestLocalizationOptions
+			{
+				DefaultRequestCulture = new RequestCulture("hr"),
+				SupportedCultures = supportedCultures,
+				SupportedUICultures = supportedCultures
+			});
+
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(name: "default", template: "{controller=Home}/{action=Index}/{id?}");
+				routes.MapRoute(name: "gallery", template: "{controller=Gallery}/{action=Index}/{id?}");
 				routes.MapRoute(name: "api/products", template: "{controller=ManagementApi}/{action=Index}");
 			});
 		}

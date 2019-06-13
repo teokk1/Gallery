@@ -1,0 +1,10 @@
+﻿@model List<Model.Entities.Products.Product>
+
+@foreach (var product in Model)
+{
+    <div class="manage-div">
+        <a href="#">@product.Name</a>
+        <a asp-action="edit_product_view" asp-route-id="@product.Id" class="material-icons icon-edit">edit</a>
+        <a asp-action="delete_product" asp-route-id="@product.Id" class="material-icons icon-delete">delete</a>
+    </div>
+}

@@ -1,11 +1,14 @@
-﻿@model DAL.Entities.Products.Product
+﻿@model Model.Entities.Products.Product
 
 <h4>Proizvod: @Model.Name</h4>
 <hr />
 <div class="col-10">
-    <partial name="Partial/_CreateEditProduct" />
+    <form asp-action="edit_product" , asp-route-id="@Model.Id">
+        <input type="hidden" asp-for="Id" />
+        <partial name="Partial/CreateEdit/_CreateEditProductPartial" />
+    </form>
 
-    <form asp-action="set_image" enctype="multipart/form-data" class="dropzone" id="imageDropzone">
+    <form asp-action="set_imageAsync" asp-route-productId="@Model.Id" enctype="multipart/form-data" class="dropzone" id="imageDropzone">
         <img class="product-image-edit" src=@Model.Image />
         <div class="dz-drop dz-message needsclick">
             Postavite sliku<br>
@@ -19,11 +22,11 @@
 
 @section Styles
 {
-<link rel="stylesheet" href="~/dropzone/min/dropzone.min.css" />
-<link rel="stylesheet" href="~/css/management.min.css" />
+    <link rel="stylesheet" href="~/dropzone/min/dropzone.min.css" />
+    <link rel="stylesheet" href="~/css/management.min.css" />
 }
 
 @section Scripts
 {
-<script src="~/dropzone/min/dropzone.min.js"></script>
+    <script src="~/dropzone/min/dropzone.min.js"></script>
 }

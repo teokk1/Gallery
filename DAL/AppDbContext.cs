@@ -1,9 +1,9 @@
-﻿using DAL.Entities;
-using DAL.Entities.Intersections;
-using DAL.Entities.Products;
-using DAL.Entities.Utility;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Model.Entities;
+using Model.Entities.Intersections;
+using Model.Entities.Products;
+using Model.Entities.Utility;
 
 namespace DAL
 {
@@ -16,7 +16,7 @@ namespace DAL
 		public DbSet<Painting> Paintings { get; set; }
 		public DbSet<Sculpture> Sculptures { get; set; }
 
-		//public DbSet<Image> Images { get; set; }
+		public DbSet<Image> Images { get; set; }
 
 		public DbSet<Material> Materials { get; set; }
 		public DbSet<Tag> Tags { get; set; }

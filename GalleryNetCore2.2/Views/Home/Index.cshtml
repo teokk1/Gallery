@@ -1,8 +1,12 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model List<Model.Entities.Products.Product>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<h1 class="welcome-heading">
+    Dobrodošli u galeriju!
+</h1>
+
+<div class="home-preview">
+    @foreach (var product in Model)
+    {
+        <partial name="Partial/_ProductPartial" , model="@product" />
+    }
 </div>

@@ -1,0 +1,18 @@
+﻿@model ProductFilterModel
+
+<div class="filter-container">
+    <form id="search-form" asp-action="" method="post" class="form-inline">
+        <div class="form-group">
+            <input class="filter-field form-control" asp-for="Name" type="text" placeholder="Naziv" />
+        </div>
+        <div class="form-group">
+            <input class="filter-field form-control" asp-for="Author" type="text" placeholder="Autor" />
+        </div>
+        <div class="form-group">
+            <input class="filter-field form-control" asp-for="Tags" type="text" placeholder="Tagovi" />
+        </div>
+        <div class="form-group">
+            <input class="filter-field form-control" asp-for="Materials" type="text" placeholder="Materijali" />
+        </div>
+    </form>
+</div>

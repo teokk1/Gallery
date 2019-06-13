@@ -1,7 +1,8 @@
-﻿using DAL.Entities.Products;
-using DAL.Entities.Utility;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Model.Entities;
+using Model.Entities.Products;
+using Model.Entities.Utility;
 
 namespace DAL
 {
@@ -12,6 +13,7 @@ namespace DAL
 			seed_roles(modelBuilder);
 			seed_materials(modelBuilder);
 			seed_tags(modelBuilder);
+			seed_artists(modelBuilder);
 			seed_products(modelBuilder);
 		}
 
@@ -34,10 +36,15 @@ namespace DAL
 			modelBuilder.Entity<Tag>().HasData(new Tag { Id = -2, Value = "Realistično" });
 		}
 
+		static void seed_artists(ModelBuilder modelBuilder)
+		{
+			modelBuilder.Entity<Artist>().HasData(new Artist { Id = -1, Name = "Nikola", LastName = "Brcic" });
+		}
+
 		static void seed_products(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Painting>().HasData(new Painting { Id = -1, Name = "Untitled 1", Height = 2.0f, Width = 1.3f });
-			modelBuilder.Entity<Sculpture>().HasData(new Sculpture { Id = -2, Name = "Lopata", Height = 2.0f, Width = 1.3f });
+			modelBuilder.Entity<Painting>().HasData(new Painting { Id = -1, ArtistId = -1, Name = "Untitled 1", Height = 2.0f, Width = 1.3f });
+			modelBuilder.Entity<Sculpture>().HasData(new Sculpture { Id = -2, ArtistId = -1, Name = "Lopata", Height = 2.0f, Width = 1.3f });
 		}
 	}
 }

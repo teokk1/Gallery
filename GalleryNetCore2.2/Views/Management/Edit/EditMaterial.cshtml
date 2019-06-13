@@ -1,0 +1,13 @@
+﻿@model Model.Entities.Utility.Material
+
+<h4>Materijal: @Model.Name</h4>
+<hr />
+<div class="col-10">
+    <form asp-action="edit_material" , asp-route-id="@Model.Id">
+        <partial name="Partial/CreateEdit/_CreateEditMaterialPartial" />
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

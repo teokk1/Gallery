@@ -1,0 +1,13 @@
+﻿@model Model.Entities.Products.Product
+
+<h4>Novi Proizvod</h4>
+<hr />
+<div class="col-10">
+    <form asp-action="create_product">
+        <partial name="Partial/CreateEdit/_CreateEditProductPartial" />
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,10 @@
+﻿@model List<Model.Entities.Utility.Material>
+
+@foreach (var material in Model)
+{
+    <div class="manage-div">
+        <a href="#">@material.Name</a>
+        <a asp-action="edit_material_view" asp-route-id="@material.Id" class="material-icons icon-edit">edit</a>
+        <a asp-action="delete_material" asp-route-id="@material.Id" class="material-icons icon-delete">delete</a>
+    </div>
+}

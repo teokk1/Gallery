@@ -1,0 +1,13 @@
+﻿@model Model.Entities.Utility.Tag
+
+<h4>Novi Tag</h4>
+<hr />
+<div class="col-10">
+    <form asp-action="create_tag">
+        <partial name="Partial/CreateEdit/_CreateEditTagPartial" />
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,4 +1,5 @@
-﻿using DAL.Entities.Products;
+﻿
+using Model.Entities.Products;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -23,13 +24,13 @@ namespace GalleryNetCore2._2.API.DTO
 		{
 			this.Id = p.Id;
 
-			this.Image = p.Image.Url;
+			this.Image = p.Image?.Url;
 
 			this.Width = p.Width;
 			this.Height = p.Height;
 
-			this.Tags = p.Tags.Select(t => t.Tag.Value).ToList();
-			this.Materials = p.Materials.Select(t => t.Material.Name).ToList();
+			this.Tags = p.Tags?.Select(t => t.Tag.Value).ToList();
+			this.Materials = p.Materials?.Select(t => t.Material.Name).ToList();
 		}
 
 		//public ProductDto(Painting p)

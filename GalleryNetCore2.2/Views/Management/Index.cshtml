@@ -1,23 +1,48 @@
-﻿
-@{
-    @model List<DAL.Entities.Products.Product>
-}
+﻿@model ManageModel
 
 <div class="view-scaffold">
     <h2 class="view-heading">Upravljanje</h2>
 
     <a class="manage-link" href="#"></a>
 
-    <div>
-        <ul class="product-manage-list">
-            @foreach (var product in Model)
-            {
-                <ul class="product-manage-list-item">
-                    <a>
-                        @product.Name
-                    </a>
-                </ul>
-            }
-        </ul>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+            <a class="nav-link active" id="products-tab" data-toggle="tab" href="#products" role="tab">Umjetnine</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="artists-tab" data-toggle="tab" href="#artists" role="tab">Umjetnici</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="materials-tab" data-toggle="tab" href="#materials" role="tab">Materijali</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" id="tags-tab" data-toggle="tab" href="#tags" role="tab">Tagovi</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="myTabContent">
+        <div class="tab-pane fade show active" id="products" role="tabpanel">
+            <a asp-action="create_product_view" class="material-icons icon-add">add</a>
+            <partial name="Browse/_ManageProductsPartial" model="@Model.Products" />
+        </div>
+
+        <div class="tab-pane fade" id="artists" role="tabpanel">
+            <a asp-action="create_artist_view" class="material-icons icon-add">add</a>
+            <partial name="Browse/_ManageArtistsPartial" model="@Model.Artists" />
+        </div>
+
+        <div class=" tab-pane fade" id="materials" role="tabpanel">
+            <a asp-action="create_material_view" class="material-icons icon-add">add</a>
+            <partial name="Browse/_ManageMaterialsPartial" model="@Model.Materials" />
+        </div>
+
+        <div class=" tab-pane fade" id="tags" role="tabpanel">
+            <a asp-action="create_tag_view" class="material-icons icon-add">add</a>
+            <partial name="Browse/_ManageTagsPartial" model="@Model.Tags" />
+        </div>
     </div>
 </div>
+
+@section Styles
+{
+    <link rel="stylesheet" href="~/css/management.min.css" />
+}

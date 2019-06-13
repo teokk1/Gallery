@@ -1,0 +1,10 @@
+﻿@model List<Model.Entities.Artist>
+
+@foreach (var artist in Model)
+{
+    <div class="manage-div">
+        <a href="#">@artist.Name</a>
+        <a asp-action="edit_artist_view" asp-route-id="@artist.Id" class="material-icons icon-edit">edit</a>
+        <a asp-action="delete_artist" asp-route-id="@artist.Id" class="material-icons icon-delete">delete</a>
+    </div>
+}

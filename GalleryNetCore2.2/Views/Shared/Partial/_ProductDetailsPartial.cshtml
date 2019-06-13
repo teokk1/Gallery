@@ -1,7 +1,5 @@
-﻿@using DAL.Entities
-@using DAL.Entities.Products
-@using Microsoft.AspNetCore.Identity
-@model DAL.Entities.Products.Product
+﻿@using Model.Entities.Products
+@model Product
 
 @{
     bool isAdmin = User.IsInRole("Admin");

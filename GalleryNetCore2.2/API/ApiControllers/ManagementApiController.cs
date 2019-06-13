@@ -1,11 +1,12 @@
 ﻿using DAL;
-using DAL.Entities.Products;
-using GalleryNetCore2._2.API.DTO;
 using GalleryNetCore2._2.Controllers;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Query;
+using Model.Entities;
+using Model.Entities.Products;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -22,15 +23,24 @@ namespace GalleryNetCore2._2.API.ApiControllers
 		{
 		}
 
+		IIncludableQueryable<Product, Image> full_products()
+		{
+			return dbContext.Products
+				.Include(p => p.Tags)
+				.Include(p => p.Materials)
+				.Include(p => p.Artist)
+				.Include(p => p.Image);
+		}
+
 		[HttpGet("products")]
-		public List<ProductDto> get() => dbContext.Products.Select(p => new ProductDto(p)).ToList();
+		public List<Product> get_products() => full_products().ToList();
 
 		[HttpGet("products/{id}")]
-		public ProductDto get(int id) => new ProductDto(dbContext.Products.Find(id));
+		public Product get_product(int id) => full_products().FirstOrDefault(p => p.Id == id);
 
 		[HttpPost("create-product")]
 		[Authorize(Roles = "Admin,Manager")]
-		public ActionResult<ProductDto> create([FromBody] Product product)
+		public ActionResult<Product> create([FromBody] Product product)
 		{
 			if (ModelState.IsValid == false)
 				return BadRequest(ModelState);
@@ -39,12 +49,12 @@ namespace GalleryNetCore2._2.API.ApiControllers
 			dbContext.Products.Add(product);
 			dbContext.SaveChanges();
 
-			return get(product.Id);
+			return get_product(product.Id);
 		}
 
 		[HttpPut("products/update/{id}")]
 		[Authorize(Roles = "Admin,Manager")]
-		public async Task<ActionResult<ProductDto>> update(int id, [FromBody] JObject productModel)
+		public async Task<ActionResult<Product>> update(int id, [FromBody] JObject productModel)
 		{
 			var product = dbContext.Products.Find(id);
 
@@ -55,7 +65,7 @@ namespace GalleryNetCore2._2.API.ApiControllers
 				if (ModelState.IsValid && await TryUpdateModelAsync(product, "", new ObjectSourceValueProvider(productModel)))
 				{
 					dbContext.SaveChanges();
-					return get(id);
+					return get_product(id);
 				}
 			}
 			else

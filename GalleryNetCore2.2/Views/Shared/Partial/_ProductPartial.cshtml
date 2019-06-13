@@ -1,40 +1,50 @@
-﻿@using DAL.Entities
-@using DAL.Entities.Products
-@using Microsoft.AspNetCore.Identity
-@model DAL.Entities.Products.Product
+﻿@using Model.Entities.Products
+@model Model.Entities.Products.Product
 
 @{
-	bool isAdmin = User.IsInRole("Admin");
+    bool isAdmin = User.IsInRole("Admin");
 
-	bool isPainting = Model is Painting;
-	bool isSculpture = Model is Sculpture;
+    bool isPainting = Model is Painting;
+    bool isSculpture = Model is Sculpture;
 }
 
 <div class="product">
-	<div class="product-top">
-		<h4 class="product-name">@Model.Name</h4>
-	</div>
+    <div class="product-top">
+        <h4 class="product-name">@Model.Name</h4>
+    </div>
 
-	<div class="product-bottom">
-		<img src="@Model.Image?.Url" />
+    <div class="product-bottom">
+        <img class="product-image" src=@Model.Image?.Url />
 
-		<div class="product-info">
-			<div class="product-dimensions">
-				<p>Dimenzije</p>
-			</div>
-			
-			<img class="product-image" src=@Model.Image/>
+        <div class="product-info">
+            <div class="artist-info">
+                <p>Umjetnik: @Model.Artist?.Name @Model.Artist?.LastName</p>
+            </div>
 
-			<div class="product-tags">
+            <div class="product-dimensions">
+                <h4 class="dimensions-heading">Dimenzije</h4>
+                <ul>
+                    <li>Širina: @(Model.Width)m</li>
+                    <li>Visina: @(Model.Height)m</li>
 
-			</div>
+                    @if (isSculpture)
+                    {
+                        <li>Dubina: @(((Sculpture)Model).Depth)m</li>
+                    }
+                </ul>
+            </div>
 
-			<div class="product-tags">
-			</div>
-		</div>
-	</div>
-	@if (isAdmin)
-	{
-		<a asp-controller="Management" asp-action=edit_painting_view asp-route-id="@Model.Id">Edit</a>
-	}
+            <div class="product-tags">
+
+            </div>
+
+            <div class="product-tags">
+            </div>
+        </div>
+    </div>
+
+    @if (isAdmin)
+    {
+        <a class="admin-edit" asp-controller="Management" asp-action=edit_product_view asp-route-id="@Model.Id">Edit</a>
+    }
 </div>

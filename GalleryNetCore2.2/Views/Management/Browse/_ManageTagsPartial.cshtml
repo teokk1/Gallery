@@ -1,0 +1,10 @@
+﻿@model List<Model.Entities.Utility.Tag>
+
+@foreach (var tag in Model)
+{
+    <div class="manage-div">
+        <a href="#">@tag.Value</a>
+        <a asp-action="edit_tag_view" asp-route-id="@tag.Id" class="material-icons icon-edit">edit</a>
+        <a asp-action="delete_tag" asp-route-id="@tag.Id" class="material-icons icon-delete">delete</a>
+    </div>
+}

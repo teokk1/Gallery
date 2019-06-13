@@ -3,9 +3,37 @@
   grid-template-columns: auto auto auto;
   grid-column-gap: 20px;
   align-content: center;
-  justify-content: center; }
+  justify-content: center;
+  background: url("https://images.unsplash.com/photo-1560301115-0cebd495255c");
+  background-size: cover;
+  background-position: center;
+  filter: blur(40%);
+  text-align: center; }
 
 .product {
-  background-color: #333;
+  background-color: rgba(0, 0, 0, 0.5);
   padding: 20px;
-  box-sizing: border-box; }
+  box-sizing: border-box;
+  border-radius: 10px;
+  color: white; }
+
+.product-image {
+  width: 400px; }
+
+.dimensions-heading {
+  font-size: 14px; }
+
+.product-dimensions li {
+  font-size: 10px; }
+
+.admin-edit {
+  color: white; }
+
+.filter-container {
+  padding: 20px;
+  display: flex;
+  justify-content: center; }
+
+.filter-field {
+  padding: 8px 4px;
+  margin: 0px 5px; }

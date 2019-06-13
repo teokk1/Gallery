@@ -1,0 +1,13 @@
+﻿@model Model.Entities.Artist
+
+<h4>Umjetnik: @Model.Name</h4>
+<hr />
+<div class="col-10">
+    <form asp-action="edit_artist" , asp-route-id="@Model.Id">
+        <partial name="Partial/CreateEdit/_CreateEditArtistPartial" />
+    </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,32 @@
+﻿@model Model.Entities.Products.Product
+
+<div asp-validation-summary="All" class="text-danger">
+
+</div>
+
+<div class="form-group">
+    <label asp-for="Width" class="control-label">Širina</label>
+    <input asp-for="Width" class="form-control" />
+    <span asp-validation-for="Width" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Height" class="control-label">Visina</label>
+    <input asp-for="Height" class="form-control" />
+    <span asp-validation-for="Height" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Name" class="control-label">Naziv</label>
+    <input asp-for="Name" class="form-control" />
+    <span asp-validation-for="Name" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label class="control-label">Umjetnik</label>
+    <select asp-for="ArtistId" asp-items="ViewBag.PossibleArtists" class="form-control"></select>
+</div>
+
+<div class="form-group form-group-center">
+    <input type="submit" id="submit-button" value="Spremi" class="btn btn-primary" />
+</div>
